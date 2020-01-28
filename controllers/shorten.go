@@ -10,14 +10,13 @@ import (
 	"github.com/justinas/alice"
 	"github.com/latesun/shortlink/db"
 	"github.com/latesun/shortlink/models"
-	"gopkg.in/validator.v2"
 )
 
 type shortenReq struct {
-	LongURL string `json:"url" validate:"nonzero"`
-	Secret  string `json:"secret" validate:"regexp=[bindolabs|sVdbhgpC]"`
-	Length  int    `json:"length" validate:"min=6,max=32"`
-	Expires int    `json:"expires" validate:"nonzero"`
+	LongURL string `json:"url" valid:"nonzero"`
+	Secret  string `json:"secret" valid:"regexp=[bindolabs|sVdbhgpC]"`
+	Length  int    `json:"length" valid:"min=6,max=32"`
+	Expires int    `json:"expires" valid:"nonzero"`
 }
 
 type shortLinkResp struct {
