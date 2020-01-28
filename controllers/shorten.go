@@ -65,7 +65,7 @@ func (a *App) createShortlink(w http.ResponseWriter, r *http.Request) {
 
 func (a *App) getShortLinkInfo(w http.ResponseWriter, r *http.Request) {
 	var (
-		shortener models.GWShortener
+		shortener models.Shortener
 		resp      shortLinkResp
 	)
 
@@ -77,8 +77,8 @@ func (a *App) getShortLinkInfo(w http.ResponseWriter, r *http.Request) {
 		responseWithError(w, StatusError{http.StatusNotFound, fmt.Errorf("query shortlink failed, %v", err.Error())})
 	}
 
-	resp.LongURL = shortener.LongURL.String()
-	resp.ShortURL = shortener.ShortenKey.String()
+	resp.LongURL = shortener.LongURL
+	resp.ShortURL = shortener.ShortenKey
 
 	responseWithJSON(w, http.StatusOK, resp)
 
